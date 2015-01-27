@@ -1,0 +1,413 @@
+\hypertarget{classexekutor_1_1MoveToSimpleExekutor}{\section{exekutor\-:\-:\-Move\-To\-Simple\-Exekutor \-Class \-Reference}
+\label{classexekutor_1_1MoveToSimpleExekutor}\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+}
+
+
+\-Simple navigation exekutor using odometry alone.  
+
+
+
+
+{\ttfamily \#include $<$move\-\_\-to\-\_\-simple\-\_\-exekutor.\-h$>$}
+
+\-Inheritance diagram for exekutor\-:\-:\-Move\-To\-Simple\-Exekutor\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classexekutor_1_1MoveToSimpleExekutor}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classexekutor_1_1MoveToSimpleExekutor_ac5a9f74e210eccfb6ecf42e07c00165d}{\-Move\-To\-Simple\-Exekutor} (std\-::string robot\-\_\-name, std\-::string action\-\_\-name)
+\begin{DoxyCompactList}\small\item\em \-Constructor. \end{DoxyCompactList}\item 
+virtual \hyperlink{classexekutor_1_1MoveToSimpleExekutor_a12574720abc2e2ea378610b7a7876c61}{$\sim$\-Move\-To\-Simple\-Exekutor} ()
+\begin{DoxyCompactList}\small\item\em \-Destructor. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classexekutor_1_1ActionExekutor_a48d170d3931798f4019856fc0f070392}{get\-Action\-Name} ()
+\begin{DoxyCompactList}\small\item\em \-We haven't found the use of this function till now! \end{DoxyCompactList}\item 
+std\-::vector$<$ double $>$ \hyperlink{classexekutor_1_1ActionExekutor_a4b392ae5a75627136a0c69832628ff28}{extract\-Params} (const char p\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em \-Converts an input string that consists of multiple double values separated by commas or spaces into a vector of doubles. \end{DoxyCompactList}\item 
+std\-::vector$<$ std\-::string $>$ \hyperlink{classexekutor_1_1ActionExekutor_a0ba18a7fb0cfcd2043fab49e6807aec7}{extract\-Param\-Strings} (const char p\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em \-Converts an input string that consists of multiple strings separated by commas or spaces into a vector of strings. \end{DoxyCompactList}\item 
+void \hyperlink{classexekutor_1_1ActionExekutor_a842baca8b8c8481088a3024c2304ae92}{wait\-For\-My\-Link} ()
+\begin{DoxyCompactList}\small\item\em \-This call is specific to the exekutor. \end{DoxyCompactList}\item 
+void \hyperlink{classexekutor_1_1ActionExekutor_a2bf07fe6ee0038ce8d6209310c41a094}{cancel\-Waiting} ()
+\begin{DoxyCompactList}\small\item\em \-Cancel waiting on a particular exekutor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classexekutor_1_1ActionExekutor_a7bd3c5620287a156a0edd581c6e8ccbe}{print\-All} ()
+\begin{DoxyCompactList}\small\item\em \-Debugging function. \end{DoxyCompactList}\item 
+static void \hyperlink{classexekutor_1_1ActionExekutor_af048b1afa2989dbd669a37a50ccc981b}{wait\-For\-Link} ()
+\begin{DoxyCompactList}\small\item\em \-When this function is called, the program starts waiting for links to become available so that it can execute actions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+boost\-::shared\-\_\-ptr\*
+$<$ tf\-::\-Transform\-Listener $>$ \hyperlink{classexekutor_1_1ActionExekutor_ae518bc34ee6123c118ba940fd1959f65}{tf\-\_\-listener\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-A transform listener pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static boost\-::shared\-\_\-ptr\*
+$<$ tf\-::\-Transform\-Listener $>$ \hyperlink{classexekutor_1_1ActionExekutor_aae544e9d0fdc59eb5c85b05d4af8afb8}{tf\-\_\-listener\-\_\-base\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-A \-Listener for all exekutors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Protected \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classexekutor_1_1MoveToSimpleExekutor_ac7e190c5953e9f3dd8246138745b8b8b}{action\-Thread} ()
+\begin{DoxyCompactList}\small\item\em \-This function creates a client to the move\-\_\-to\-\_\-simple action. \end{DoxyCompactList}\item 
+void \hyperlink{classexekutor_1_1ActionExekutor_ab654dafa7b307003c35124509e3d8505}{start\-Action} (int i=\hyperlink{action__exekutor_8h_a5b040d9757224739efa101219b820edc}{\-A\-C\-T\-I\-O\-N\-\_\-\-T\-I\-M\-E\-O\-U\-T})
+\begin{DoxyCompactList}\small\item\em \-The function that makes a call to the \hyperlink{classexekutor_1_1ActionExekutor_ab80a1327f11113222157cfec0abd9e9b}{action\-Thread()} after doing common tasks. \end{DoxyCompactList}\item 
+void \hyperlink{classexekutor_1_1ActionExekutor_ae2f81a4994766a040bf6fa1cf36fbfb5}{initiate\-Meta\-Tuples} ()
+\begin{DoxyCompactList}\small\item\em \-This function initiates all the peis meta-\/tuples necessary to use the action. \end{DoxyCompactList}\item 
+\-Peis\-Tuple \hyperlink{classexekutor_1_1ActionExekutor_ac1e62ad386692ab2cd7e8ae2173f1eb5}{get\-Param\-Tuple} ()
+\begin{DoxyCompactList}\small\item\em \-Convenience function to get the parameter tuple. \end{DoxyCompactList}\item 
+\-Peis\-Tuple \hyperlink{classexekutor_1_1ActionExekutor_aad1e82b7d1c173dd1c8f81967d7374b3}{get\-State\-Tuple} ()
+\begin{DoxyCompactList}\small\item\em \-Convenience function to get the state tuple. \end{DoxyCompactList}\item 
+\-Peis\-Tuple \hyperlink{classexekutor_1_1ActionExekutor_a1c1f3fdb9bd439a014fa3af470eb250a}{get\-Command\-Tuple} ()
+\begin{DoxyCompactList}\small\item\em \-Convenience function to get the command tuple. \end{DoxyCompactList}\item 
+void \hyperlink{classexekutor_1_1ActionExekutor_a47056dd4cb829acdbfd6a43378d3f332}{set\-State} (\hyperlink{namespaceexekutor_a82e43e24945d434a81cc5d50282a0e6d}{\-State\-Value} value)
+\begin{DoxyCompactList}\small\item\em \-Set the \-S\-T\-A\-T\-E tuples to the desired values. \end{DoxyCompactList}\item 
+void \hyperlink{classexekutor_1_1ActionExekutor_a3ae8766878e990bca14bf45761a46bf2}{set\-Result} (std\-::string result\-\_\-value)
+\begin{DoxyCompactList}\small\item\em \-Set the result tuple for actions like acquire. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Protected \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classexekutor_1_1ActionExekutor_ad2beec0ac18fbdaccf66fea31dbc9f69}{add\-Action} (\hyperlink{classexekutor_1_1ActionExekutor}{\-Action\-Exekutor} $\ast$\-\_\-this)
+\begin{DoxyCompactList}\small\item\em \-Add the action to the action\-\_\-ptr\-\_\-list. \end{DoxyCompactList}\item 
+static void $\ast$ \hyperlink{classexekutor_1_1ActionExekutor_a09a4d87243b3e4c36daf1ea43ee67196}{wait\-Thread} (void $\ast$\-\_\-this\-\_\-)
+\begin{DoxyCompactList}\small\item\em \-The thread function that actually does the waiting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Protected \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+actionlib\-::\-Simple\-Action\-Client\*
+$<$ simple\-\_\-service\-::\-Move\-To\-Simple\-Action $>$ \hyperlink{classexekutor_1_1MoveToSimpleExekutor_ae1df451b6050e7e128a4a50211c25c4b}{move\-\_\-to\-\_\-simple\-\_\-client\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-A simple\-\_\-action\-\_\-client to the 'move\-\_\-to\-\_\-simple' action server. \end{DoxyCompactList}\item 
+ros\-::\-Node\-Handle \hyperlink{classexekutor_1_1ActionExekutor_a1f0541608c4f27f3c72ab22b1874c882}{nh\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-A \-Nodehandle. \end{DoxyCompactList}\item 
+pthread\-\_\-t \hyperlink{classexekutor_1_1ActionExekutor_a8d7e748c6d705da31eea62af6723ebca}{thread\-\_\-id\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Id of the thread where this exekutor is running. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classexekutor_1_1ActionExekutor_af165894bbbbabd62c17be857be095936}{robot\-\_\-name\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-This member stores the name of the robot. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classexekutor_1_1ActionExekutor_ad0ab1bb7a2575962ee5fc9e2150c5d50}{action\-\_\-name\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-This member stores the name of the action. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classexekutor_1_1ActionExekutor_a22f5cde3fe83eb147ec50c2d760b2d1f}{tuple\-\_\-set\-\_\-} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em \-Convenience strings to store the \-Command, \-State and \-Parameters meta-\/keys. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Protected \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceexekutor_a58d8a9cd227883a8eacb6400c9f62acb}{\-String\-Vector} \hyperlink{classexekutor_1_1ActionExekutor_a0dc39a7a2a3a67d2bdd366f9e6e682a2}{action\-\_\-str\-\_\-list}
+\begin{DoxyCompactList}\small\item\em \-This static member has a list of action names of all created objects of supertype \hyperlink{classexekutor_1_1ActionExekutor}{\-Action\-Exekutor}. \end{DoxyCompactList}\item 
+static int \hyperlink{classexekutor_1_1ActionExekutor_a31644a88e4d0166c2d3a70bab9eb5b99}{my\-\_\-peis\-\_\-id}
+\begin{DoxyCompactList}\small\item\em \-Peis \-I\-D of the process running the exekutor. \end{DoxyCompactList}\item 
+static \hyperlink{namespaceexekutor_a141a8f9a739e67ffb2356da18a653162}{\-Action\-Exekutor\-Ptr\-Vector} \hyperlink{classexekutor_1_1ActionExekutor_a73c4f2607b0725f5b201cf501cb42578}{action\-\_\-ptr\-\_\-list}
+\begin{DoxyCompactList}\small\item\em \-This static member has a list of all the created objects of supertype \hyperlink{classexekutor_1_1ActionExekutor}{\-Action\-Exekutor}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Simple navigation exekutor using odometry alone. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classexekutor_1_1MoveToSimpleExekutor_ac5a9f74e210eccfb6ecf42e07c00165d}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!\-Move\-To\-Simple\-Exekutor@{\-Move\-To\-Simple\-Exekutor}}
+\index{\-Move\-To\-Simple\-Exekutor@{\-Move\-To\-Simple\-Exekutor}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{\-Move\-To\-Simple\-Exekutor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf exekutor\-::\-Move\-To\-Simple\-Exekutor\-::\-Move\-To\-Simple\-Exekutor} (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{robot\-\_\-name, }
+\item[{std\-::string}]{action\-\_\-name}
+\end{DoxyParamCaption}
+)}}\label{classexekutor_1_1MoveToSimpleExekutor_ac5a9f74e210eccfb6ecf42e07c00165d}
+
+
+\-Constructor. 
+
+\hypertarget{classexekutor_1_1MoveToSimpleExekutor_a12574720abc2e2ea378610b7a7876c61}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!$\sim$\-Move\-To\-Simple\-Exekutor@{$\sim$\-Move\-To\-Simple\-Exekutor}}
+\index{$\sim$\-Move\-To\-Simple\-Exekutor@{$\sim$\-Move\-To\-Simple\-Exekutor}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{$\sim$\-Move\-To\-Simple\-Exekutor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf exekutor\-::\-Move\-To\-Simple\-Exekutor\-::$\sim$\-Move\-To\-Simple\-Exekutor} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classexekutor_1_1MoveToSimpleExekutor_a12574720abc2e2ea378610b7a7876c61}
+
+
+\-Destructor. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classexekutor_1_1MoveToSimpleExekutor_ac7e190c5953e9f3dd8246138745b8b8b}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!action\-Thread@{action\-Thread}}
+\index{action\-Thread@{action\-Thread}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{action\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Move\-To\-Simple\-Exekutor\-::action\-Thread} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}\label{classexekutor_1_1MoveToSimpleExekutor_ac7e190c5953e9f3dd8246138745b8b8b}
+
+
+\-This function creates a client to the move\-\_\-to\-\_\-simple action. 
+
+\-The implementation of \hyperlink{classexekutor_1_1MoveToSimpleExekutor_ac7e190c5953e9f3dd8246138745b8b8b}{action\-Thread()} function. \-This is called from \hyperlink{classexekutor_1_1ActionExekutor}{\-Action\-Exekutor}'s start\-Action\-Thread(). \-This is where we create the client to the move\-\_\-to\-\_\-simple action. 
+
+\-Implements \hyperlink{classexekutor_1_1ActionExekutor_ab80a1327f11113222157cfec0abd9e9b}{exekutor\-::\-Action\-Exekutor}.
+
+\hypertarget{classexekutor_1_1ActionExekutor_ad2beec0ac18fbdaccf66fea31dbc9f69}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!add\-Action@{add\-Action}}
+\index{add\-Action@{add\-Action}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{add\-Action}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf exekutor\-::\-Action\-Exekutor\-::add\-Action} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Action\-Exekutor} $\ast$}]{\-\_\-this}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_ad2beec0ac18fbdaccf66fea31dbc9f69}
+
+
+\-Add the action to the action\-\_\-ptr\-\_\-list. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a2bf07fe6ee0038ce8d6209310c41a094}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!cancel\-Waiting@{cancel\-Waiting}}
+\index{cancel\-Waiting@{cancel\-Waiting}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{cancel\-Waiting}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Action\-Exekutor\-::cancel\-Waiting} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a2bf07fe6ee0038ce8d6209310c41a094}
+
+
+\-Cancel waiting on a particular exekutor. 
+
+\-Useful to cancel out conflicting exekutor instances. \hypertarget{classexekutor_1_1ActionExekutor_a4b392ae5a75627136a0c69832628ff28}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!extract\-Params@{extract\-Params}}
+\index{extract\-Params@{extract\-Params}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{extract\-Params}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$double$>$ {\bf exekutor\-::\-Action\-Exekutor\-::extract\-Params} (
+\begin{DoxyParamCaption}
+\item[{const char}]{p\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a4b392ae5a75627136a0c69832628ff28}
+
+
+\-Converts an input string that consists of multiple double values separated by commas or spaces into a vector of doubles. 
+
+\-This function converts the c-\/string given as argument into double values. \-The double values in the actual string should be separated by commas or spaces. \hypertarget{classexekutor_1_1ActionExekutor_a0ba18a7fb0cfcd2043fab49e6807aec7}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!extract\-Param\-Strings@{extract\-Param\-Strings}}
+\index{extract\-Param\-Strings@{extract\-Param\-Strings}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{extract\-Param\-Strings}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$std\-::string$>$ {\bf exekutor\-::\-Action\-Exekutor\-::extract\-Param\-Strings} (
+\begin{DoxyParamCaption}
+\item[{const char}]{p\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a0ba18a7fb0cfcd2043fab49e6807aec7}
+
+
+\-Converts an input string that consists of multiple strings separated by commas or spaces into a vector of strings. 
+
+\-This function converts the c-\/string given as argument into a vector of strings. \-The strings in the input string should be separated by commas or spaces. \hypertarget{classexekutor_1_1ActionExekutor_a48d170d3931798f4019856fc0f070392}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!get\-Action\-Name@{get\-Action\-Name}}
+\index{get\-Action\-Name@{get\-Action\-Name}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{get\-Action\-Name}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf exekutor\-::\-Action\-Exekutor\-::get\-Action\-Name} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a48d170d3931798f4019856fc0f070392}
+
+
+\-We haven't found the use of this function till now! 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a1c1f3fdb9bd439a014fa3af470eb250a}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!get\-Command\-Tuple@{get\-Command\-Tuple}}
+\index{get\-Command\-Tuple@{get\-Command\-Tuple}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{get\-Command\-Tuple}]{\setlength{\rightskip}{0pt plus 5cm}\-Peis\-Tuple {\bf exekutor\-::\-Action\-Exekutor\-::get\-Command\-Tuple} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a1c1f3fdb9bd439a014fa3af470eb250a}
+
+
+\-Convenience function to get the command tuple. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_ac1e62ad386692ab2cd7e8ae2173f1eb5}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!get\-Param\-Tuple@{get\-Param\-Tuple}}
+\index{get\-Param\-Tuple@{get\-Param\-Tuple}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{get\-Param\-Tuple}]{\setlength{\rightskip}{0pt plus 5cm}\-Peis\-Tuple {\bf exekutor\-::\-Action\-Exekutor\-::get\-Param\-Tuple} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_ac1e62ad386692ab2cd7e8ae2173f1eb5}
+
+
+\-Convenience function to get the parameter tuple. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_aad1e82b7d1c173dd1c8f81967d7374b3}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!get\-State\-Tuple@{get\-State\-Tuple}}
+\index{get\-State\-Tuple@{get\-State\-Tuple}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{get\-State\-Tuple}]{\setlength{\rightskip}{0pt plus 5cm}\-Peis\-Tuple {\bf exekutor\-::\-Action\-Exekutor\-::get\-State\-Tuple} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_aad1e82b7d1c173dd1c8f81967d7374b3}
+
+
+\-Convenience function to get the state tuple. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_ae2f81a4994766a040bf6fa1cf36fbfb5}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!initiate\-Meta\-Tuples@{initiate\-Meta\-Tuples}}
+\index{initiate\-Meta\-Tuples@{initiate\-Meta\-Tuples}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{initiate\-Meta\-Tuples}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Action\-Exekutor\-::initiate\-Meta\-Tuples} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_ae2f81a4994766a040bf6fa1cf36fbfb5}
+
+
+\-This function initiates all the peis meta-\/tuples necessary to use the action. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a7bd3c5620287a156a0edd581c6e8ccbe}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!print\-All@{print\-All}}
+\index{print\-All@{print\-All}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{print\-All}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf exekutor\-::\-Action\-Exekutor\-::print\-All} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a7bd3c5620287a156a0edd581c6e8ccbe}
+
+
+\-Debugging function. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a3ae8766878e990bca14bf45761a46bf2}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!set\-Result@{set\-Result}}
+\index{set\-Result@{set\-Result}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{set\-Result}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Action\-Exekutor\-::set\-Result} (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{result\-\_\-value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a3ae8766878e990bca14bf45761a46bf2}
+
+
+\-Set the result tuple for actions like acquire. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a47056dd4cb829acdbfd6a43378d3f332}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!set\-State@{set\-State}}
+\index{set\-State@{set\-State}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{set\-State}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Action\-Exekutor\-::set\-State} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-State\-Value}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a47056dd4cb829acdbfd6a43378d3f332}
+
+
+\-Set the \-S\-T\-A\-T\-E tuples to the desired values. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_ab654dafa7b307003c35124509e3d8505}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!start\-Action@{start\-Action}}
+\index{start\-Action@{start\-Action}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{start\-Action}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Action\-Exekutor\-::start\-Action} (
+\begin{DoxyParamCaption}
+\item[{int}]{i = {\ttfamily {\bf \-A\-C\-T\-I\-O\-N\-\_\-\-T\-I\-M\-E\-O\-U\-T}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_ab654dafa7b307003c35124509e3d8505}
+
+
+\-The function that makes a call to the \hyperlink{classexekutor_1_1ActionExekutor_ab80a1327f11113222157cfec0abd9e9b}{action\-Thread()} after doing common tasks. 
+
+\-This takes care of setting the state to \-R\-U\-N\-N\-I\-N\-G. \hypertarget{classexekutor_1_1ActionExekutor_af048b1afa2989dbd669a37a50ccc981b}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!wait\-For\-Link@{wait\-For\-Link}}
+\index{wait\-For\-Link@{wait\-For\-Link}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{wait\-For\-Link}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf exekutor\-::\-Action\-Exekutor\-::wait\-For\-Link} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_af048b1afa2989dbd669a37a50ccc981b}
+
+
+\-When this function is called, the program starts waiting for links to become available so that it can execute actions. 
+
+\-This is what should be used when creating an executable. \hypertarget{classexekutor_1_1ActionExekutor_a842baca8b8c8481088a3024c2304ae92}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!wait\-For\-My\-Link@{wait\-For\-My\-Link}}
+\index{wait\-For\-My\-Link@{wait\-For\-My\-Link}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{wait\-For\-My\-Link}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Action\-Exekutor\-::wait\-For\-My\-Link} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a842baca8b8c8481088a3024c2304ae92}
+
+
+\-This call is specific to the exekutor. 
+
+\hyperlink{classexekutor_1_1ActionExekutor_af048b1afa2989dbd669a37a50ccc981b}{wait\-For\-Link()} calls this for every exekutor. \hypertarget{classexekutor_1_1ActionExekutor_a09a4d87243b3e4c36daf1ea43ee67196}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!wait\-Thread@{wait\-Thread}}
+\index{wait\-Thread@{wait\-Thread}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{wait\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}static void$\ast$ {\bf exekutor\-::\-Action\-Exekutor\-::wait\-Thread} (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{\-\_\-this\-\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a09a4d87243b3e4c36daf1ea43ee67196}
+
+
+\-The thread function that actually does the waiting. 
+
+\-One such thread exists for each exekutor running. 
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classexekutor_1_1ActionExekutor_ad0ab1bb7a2575962ee5fc9e2150c5d50}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!action\-\_\-name\-\_\-@{action\-\_\-name\-\_\-}}
+\index{action\-\_\-name\-\_\-@{action\-\_\-name\-\_\-}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{action\-\_\-name\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf exekutor\-::\-Action\-Exekutor\-::action\-\_\-name\-\_\-}\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_ad0ab1bb7a2575962ee5fc9e2150c5d50}
+
+
+\-This member stores the name of the action. 
+
+\-Example\-: \-Move\-To, \-Find\-Blob or \-Find\-Human. \hypertarget{classexekutor_1_1ActionExekutor_a73c4f2607b0725f5b201cf501cb42578}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!action\-\_\-ptr\-\_\-list@{action\-\_\-ptr\-\_\-list}}
+\index{action\-\_\-ptr\-\_\-list@{action\-\_\-ptr\-\_\-list}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{action\-\_\-ptr\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Action\-Exekutor\-Ptr\-Vector} {\bf exekutor\-::\-Action\-Exekutor\-::action\-\_\-ptr\-\_\-list}\hspace{0.3cm}{\ttfamily  \mbox{[}static, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a73c4f2607b0725f5b201cf501cb42578}
+
+
+\-This static member has a list of all the created objects of supertype \hyperlink{classexekutor_1_1ActionExekutor}{\-Action\-Exekutor}. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a0dc39a7a2a3a67d2bdd366f9e6e682a2}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!action\-\_\-str\-\_\-list@{action\-\_\-str\-\_\-list}}
+\index{action\-\_\-str\-\_\-list@{action\-\_\-str\-\_\-list}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{action\-\_\-str\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-String\-Vector} {\bf exekutor\-::\-Action\-Exekutor\-::action\-\_\-str\-\_\-list}\hspace{0.3cm}{\ttfamily  \mbox{[}static, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a0dc39a7a2a3a67d2bdd366f9e6e682a2}
+
+
+\-This static member has a list of action names of all created objects of supertype \hyperlink{classexekutor_1_1ActionExekutor}{\-Action\-Exekutor}. 
+
+\hypertarget{classexekutor_1_1MoveToSimpleExekutor_ae1df451b6050e7e128a4a50211c25c4b}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!move\-\_\-to\-\_\-simple\-\_\-client\-\_\-@{move\-\_\-to\-\_\-simple\-\_\-client\-\_\-}}
+\index{move\-\_\-to\-\_\-simple\-\_\-client\-\_\-@{move\-\_\-to\-\_\-simple\-\_\-client\-\_\-}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{move\-\_\-to\-\_\-simple\-\_\-client\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}actionlib\-::\-Simple\-Action\-Client$<$simple\-\_\-service\-::\-Move\-To\-Simple\-Action$>$ {\bf exekutor\-::\-Move\-To\-Simple\-Exekutor\-::move\-\_\-to\-\_\-simple\-\_\-client\-\_\-}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}\label{classexekutor_1_1MoveToSimpleExekutor_ae1df451b6050e7e128a4a50211c25c4b}
+
+
+\-A simple\-\_\-action\-\_\-client to the 'move\-\_\-to\-\_\-simple' action server. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a31644a88e4d0166c2d3a70bab9eb5b99}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!my\-\_\-peis\-\_\-id@{my\-\_\-peis\-\_\-id}}
+\index{my\-\_\-peis\-\_\-id@{my\-\_\-peis\-\_\-id}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{my\-\_\-peis\-\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf exekutor\-::\-Action\-Exekutor\-::my\-\_\-peis\-\_\-id}\hspace{0.3cm}{\ttfamily  \mbox{[}static, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a31644a88e4d0166c2d3a70bab9eb5b99}
+
+
+\-Peis \-I\-D of the process running the exekutor. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a1f0541608c4f27f3c72ab22b1874c882}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!nh\-\_\-@{nh\-\_\-}}
+\index{nh\-\_\-@{nh\-\_\-}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{nh\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}ros\-::\-Node\-Handle {\bf exekutor\-::\-Action\-Exekutor\-::nh\-\_\-}\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a1f0541608c4f27f3c72ab22b1874c882}
+
+
+\-A \-Nodehandle. 
+
+\-This ensures that \-R\-O\-S stays alive as long as the last exekutor is alive. \hypertarget{classexekutor_1_1ActionExekutor_af165894bbbbabd62c17be857be095936}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!robot\-\_\-name\-\_\-@{robot\-\_\-name\-\_\-}}
+\index{robot\-\_\-name\-\_\-@{robot\-\_\-name\-\_\-}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{robot\-\_\-name\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf exekutor\-::\-Action\-Exekutor\-::robot\-\_\-name\-\_\-}\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_af165894bbbbabd62c17be857be095936}
+
+
+\-This member stores the name of the robot. 
+
+\-Example\-: \-Doro1, \-Oro1, \-Coro1, \-Turtlebot342. \hypertarget{classexekutor_1_1ActionExekutor_ae518bc34ee6123c118ba940fd1959f65}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!tf\-\_\-listener\-\_\-@{tf\-\_\-listener\-\_\-}}
+\index{tf\-\_\-listener\-\_\-@{tf\-\_\-listener\-\_\-}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{tf\-\_\-listener\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}boost\-::shared\-\_\-ptr$<$tf\-::\-Transform\-Listener$>$ {\bf exekutor\-::\-Action\-Exekutor\-::tf\-\_\-listener\-\_\-}\hspace{0.3cm}{\ttfamily  \mbox{[}inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_ae518bc34ee6123c118ba940fd1959f65}
+
+
+\-A transform listener pointer. 
+
+\-In practive we create one static \-Listener. \-Actually the original tf\-\_\-listener\-\_\-base\-\_\- can be used everywhere in code. \-To avoid too much rewriting, \-I have left this as such. \hypertarget{classexekutor_1_1ActionExekutor_aae544e9d0fdc59eb5c85b05d4af8afb8}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!tf\-\_\-listener\-\_\-base\-\_\-@{tf\-\_\-listener\-\_\-base\-\_\-}}
+\index{tf\-\_\-listener\-\_\-base\-\_\-@{tf\-\_\-listener\-\_\-base\-\_\-}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{tf\-\_\-listener\-\_\-base\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}boost\-::shared\-\_\-ptr$<$tf\-::\-Transform\-Listener$>$ {\bf exekutor\-::\-Action\-Exekutor\-::tf\-\_\-listener\-\_\-base\-\_\-}\hspace{0.3cm}{\ttfamily  \mbox{[}static, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_aae544e9d0fdc59eb5c85b05d4af8afb8}
+
+
+\-A \-Listener for all exekutors. 
+
+\-All the tf\-\_\-listener\-\_\- pointers point to this only. \hypertarget{classexekutor_1_1ActionExekutor_a8d7e748c6d705da31eea62af6723ebca}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!thread\-\_\-id\-\_\-@{thread\-\_\-id\-\_\-}}
+\index{thread\-\_\-id\-\_\-@{thread\-\_\-id\-\_\-}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{thread\-\_\-id\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}pthread\-\_\-t {\bf exekutor\-::\-Action\-Exekutor\-::thread\-\_\-id\-\_\-}\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a8d7e748c6d705da31eea62af6723ebca}
+
+
+\-Id of the thread where this exekutor is running. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a22f5cde3fe83eb147ec50c2d760b2d1f}{\index{exekutor\-::\-Move\-To\-Simple\-Exekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}!tuple\-\_\-set\-\_\-@{tuple\-\_\-set\-\_\-}}
+\index{tuple\-\_\-set\-\_\-@{tuple\-\_\-set\-\_\-}!exekutor::MoveToSimpleExekutor@{exekutor\-::\-Move\-To\-Simple\-Exekutor}}
+\subsubsection[{tuple\-\_\-set\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf exekutor\-::\-Action\-Exekutor\-::tuple\-\_\-set\-\_\-}\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a22f5cde3fe83eb147ec50c2d760b2d1f}
+
+
+\-Convenience strings to store the \-Command, \-State and \-Parameters meta-\/keys. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/ace/chittaranjan\-\_\-ros/catkin\-\_\-ws3/src/exekutor/action\-\_\-exekutor/include/exekutor/\hyperlink{move__to__simple__exekutor_8h}{move\-\_\-to\-\_\-simple\-\_\-exekutor.\-h}\end{DoxyCompactItemize}

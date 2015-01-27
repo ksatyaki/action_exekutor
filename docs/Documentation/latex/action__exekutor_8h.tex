@@ -1,0 +1,64 @@
+\hypertarget{action__exekutor_8h}{\section{/home/ace/chittaranjan\-\_\-ros/catkin\-\_\-ws3/src/exekutor/action\-\_\-exekutor/include/exekutor/action\-\_\-exekutor.h \-File \-Reference}
+\label{action__exekutor_8h}\index{/home/ace/chittaranjan\-\_\-ros/catkin\-\_\-ws3/src/exekutor/action\-\_\-exekutor/include/exekutor/action\-\_\-exekutor.\-h@{/home/ace/chittaranjan\-\_\-ros/catkin\-\_\-ws3/src/exekutor/action\-\_\-exekutor/include/exekutor/action\-\_\-exekutor.\-h}}
+}
+{\ttfamily \#include $<$string$>$}\*
+{\ttfamily \#include $<$vector$>$}\*
+{\ttfamily \#include $<$unistd.\-h$>$}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+{\ttfamily \#include $<$iostream$>$}\*
+{\ttfamily \#include $<$pthread.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+{\ttfamily \#include $<$ros/ros.\-h$>$}\*
+{\ttfamily \#include $<$tf/tf.\-h$>$}\*
+{\ttfamily \#include $<$tf/transform\-\_\-listener.\-h$>$}\*
+{\ttfamily \#include $<$cam\-\_\-interface/cam\-\_\-interface.\-h$>$}\*
+{\ttfamily \#include $<$peiskernel/peiskernel.\-h$>$}\*
+{\ttfamily \#include $<$peiskernel/peiskernel\-\_\-mt.\-h$>$}\*
+\subsection*{\-Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classexekutor_1_1ActionExekutor}{exekutor\-::\-Action\-Exekutor}
+\begin{DoxyCompactList}\small\item\em \-A \-Base class to keep track of all the declared actions and to run a \-Listener that continuously listens on tuples and spawns the appropriate \hyperlink{classexekutor_1_1ActionExekutor_ab80a1327f11113222157cfec0abd9e9b}{action\-Thread()} whilst waiting for other tuples whose actions don't affect the actions happening. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespaceexekutor}{exekutor}
+\end{DoxyCompactItemize}
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{action__exekutor_8h_a5b040d9757224739efa101219b820edc}{\-A\-C\-T\-I\-O\-N\-\_\-\-T\-I\-M\-E\-O\-U\-T}~10
+\begin{DoxyCompactList}\small\item\em \-The macro that defines when an action should time-\/out. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\-::vector\*
+$<$ \-Action\-Exekutor $\ast$ $>$ \hyperlink{namespaceexekutor_a141a8f9a739e67ffb2356da18a653162}{exekutor\-::\-Action\-Exekutor\-Ptr\-Vector}
+\begin{DoxyCompactList}\small\item\em \-Why not use some convenience typedefs? \end{DoxyCompactList}\item 
+typedef std\-::vector$<$ std\-::string $>$ \hyperlink{namespaceexekutor_a58d8a9cd227883a8eacb6400c9f62acb}{exekutor\-::\-String\-Vector}
+\end{DoxyCompactItemize}
+\subsection*{\-Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceexekutor_a5fe3e82bafcab924fb47cd1546f2847b}{exekutor\-::\-Tuple\-Type} \{ \hyperlink{namespaceexekutor_a5fe3e82bafcab924fb47cd1546f2847bae3ed6fa0f1dff9c6dda0c41a48cd40b6}{exekutor\-::\-C\-O\-M\-M\-A\-N\-D} =  0, 
+\hyperlink{namespaceexekutor_a5fe3e82bafcab924fb47cd1546f2847bac40ed7a089175c0d318a9324b46b83c1}{exekutor\-::\-S\-T\-A\-T\-E}, 
+\hyperlink{namespaceexekutor_a5fe3e82bafcab924fb47cd1546f2847ba65bcb539868c8cd794ff50b6ebc9c41f}{exekutor\-::\-P\-A\-R\-A\-M\-S}, 
+\hyperlink{namespaceexekutor_a5fe3e82bafcab924fb47cd1546f2847ba99ae4c2e72786173fcf1e1431de54e0c}{exekutor\-::\-R\-E\-S\-U\-L\-T}
+ \}
+\begin{DoxyCompactList}\small\item\em \-An enumeration for convenience in accessing meta-\/tuple related structures. \end{DoxyCompactList}\item 
+enum \hyperlink{namespaceexekutor_a82e43e24945d434a81cc5d50282a0e6d}{exekutor\-::\-State\-Value} \{ \hyperlink{namespaceexekutor_a82e43e24945d434a81cc5d50282a0e6dad56b9ba7810772b111bcaf7b87d723cc}{exekutor\-::\-C\-O\-M\-P\-L\-E\-T\-E\-D} =  0, 
+\hyperlink{namespaceexekutor_a82e43e24945d434a81cc5d50282a0e6dafe9f8c6a10fea13d10bac647d6fa41e0}{exekutor\-::\-R\-U\-N\-N\-I\-N\-G}, 
+\hyperlink{namespaceexekutor_a82e43e24945d434a81cc5d50282a0e6da20008e915a3910acb0109216ee906ac2}{exekutor\-::\-F\-A\-I\-L\-E\-D}, 
+\hyperlink{namespaceexekutor_a82e43e24945d434a81cc5d50282a0e6dac3ce2ab02feb59cc4ffe971784e6391b}{exekutor\-::\-I\-D\-L\-E}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{action__exekutor_8h_a5b040d9757224739efa101219b820edc}{\index{action\-\_\-exekutor.\-h@{action\-\_\-exekutor.\-h}!\-A\-C\-T\-I\-O\-N\-\_\-\-T\-I\-M\-E\-O\-U\-T@{\-A\-C\-T\-I\-O\-N\-\_\-\-T\-I\-M\-E\-O\-U\-T}}
+\index{\-A\-C\-T\-I\-O\-N\-\_\-\-T\-I\-M\-E\-O\-U\-T@{\-A\-C\-T\-I\-O\-N\-\_\-\-T\-I\-M\-E\-O\-U\-T}!action_exekutor.h@{action\-\_\-exekutor.\-h}}
+\subsubsection[{\-A\-C\-T\-I\-O\-N\-\_\-\-T\-I\-M\-E\-O\-U\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-A\-C\-T\-I\-O\-N\-\_\-\-T\-I\-M\-E\-O\-U\-T}~10}}\label{action__exekutor_8h_a5b040d9757224739efa101219b820edc}
+
+
+\-The macro that defines when an action should time-\/out. 
+

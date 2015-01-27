@@ -1,0 +1,284 @@
+\hypertarget{classexekutor_1_1PickUpExekutor}{\section{exekutor\-:\-:\-Pick\-Up\-Exekutor \-Class \-Reference}
+\label{classexekutor_1_1PickUpExekutor}\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+}
+
+
+\-The \-Class that provides the exekutor interface for the \char`\"{}move it\char`\"{}/\char`\"{}manipulation\char`\"{} action.  
+
+
+
+
+{\ttfamily \#include $<$pick\-\_\-up\-\_\-exekutor.\-h$>$}
+
+\-Inheritance diagram for exekutor\-:\-:\-Pick\-Up\-Exekutor\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classexekutor_1_1PickUpExekutor}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classexekutor_1_1PickUpExekutor_a22954286bf604efb574d30ddb1f4cd7d}{\-Pick\-Up\-Exekutor} (std\-::string robot\-\_\-name, std\-::string a\-\_\-name)
+\begin{DoxyCompactList}\small\item\em \-Constructor takes as arguments the robot's name and the function's name. \end{DoxyCompactList}\item 
+virtual \hyperlink{classexekutor_1_1PickUpExekutor_a2b05bbfb6a08f3813a5e58dcdfb4a713}{$\sim$\-Pick\-Up\-Exekutor} ()
+\item 
+std\-::string \hyperlink{classexekutor_1_1ActionExekutor_a48d170d3931798f4019856fc0f070392}{get\-Action\-Name} ()
+\begin{DoxyCompactList}\small\item\em \-We haven't found the use of this function till now! \end{DoxyCompactList}\item 
+std\-::vector$<$ double $>$ \hyperlink{classexekutor_1_1ActionExekutor_af8ca9f59f077baad45a8cba4ab774e82}{extract\-Params} (char p\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em \-Convert a string into a vector of doubles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classexekutor_1_1ActionExekutor_a1aa23235e75f6c59983115b9e3c4dbfd}{wait\-For\-Link} ()
+\begin{DoxyCompactList}\small\item\em \-When this function is called, the program starts waiting for links to become available so that it can execute actions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Protected \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classexekutor_1_1PickUpExekutor_a68fcf0ded6547a5b7711dcd5fbc75a21}{action\-Thread} ()
+\begin{DoxyCompactList}\small\item\em \-Function is called after meta link is established. \end{DoxyCompactList}\item 
+void \hyperlink{classexekutor_1_1ActionExekutor_ae2f81a4994766a040bf6fa1cf36fbfb5}{initiate\-Meta\-Tuples} ()
+\begin{DoxyCompactList}\small\item\em \-This function initiates all the peis meta-\/tuples necessary to use the action. \end{DoxyCompactList}\item 
+void \hyperlink{classexekutor_1_1ActionExekutor_a73b5509aeadf1d592b3b2b27bd9ce2ae}{reset\-Meta\-Tuples} ()
+\begin{DoxyCompactList}\small\item\em \-Reset \-Meta-\/tuples that were linked previously. \end{DoxyCompactList}\item 
+\-Peis\-Tuple \hyperlink{classexekutor_1_1ActionExekutor_ac1e62ad386692ab2cd7e8ae2173f1eb5}{get\-Param\-Tuple} ()
+\begin{DoxyCompactList}\small\item\em \-Convenience function to extract the parameters. \end{DoxyCompactList}\item 
+void \hyperlink{classexekutor_1_1ActionExekutor_a47056dd4cb829acdbfd6a43378d3f332}{set\-State} (\hyperlink{namespaceexekutor_a82e43e24945d434a81cc5d50282a0e6d}{\-State\-Value} value)
+\begin{DoxyCompactList}\small\item\em \-Set the \-S\-T\-A\-T\-E tuples to the desired values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Protected \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classexekutor_1_1ActionExekutor_ad2beec0ac18fbdaccf66fea31dbc9f69}{add\-Action} (\hyperlink{classexekutor_1_1ActionExekutor}{\-Action\-Exekutor} $\ast$\-\_\-this)
+\begin{DoxyCompactList}\small\item\em \-Add the action to the action\-\_\-ptr\-\_\-list. \end{DoxyCompactList}\item 
+static void $\ast$ \hyperlink{classexekutor_1_1ActionExekutor_a0637295658ad106f0ed3661be8f52c13}{start\-Action\-Thread} (void $\ast$\-A)
+\begin{DoxyCompactList}\small\item\em \-The main thread function from where action\-Thread is going to be called. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Protected \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+actionlib\-::\-Simple\-Action\-Client\*
+$<$ pick\-\_\-up\-\_\-action\-::\-Pick\-Up\-Action $>$ \hyperlink{classexekutor_1_1PickUpExekutor_a49a101b883854d2fd5200dae5277125b}{pick\-\_\-up\-\_\-client\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Action client (simple) for the 'pick\-\_\-up' action. \end{DoxyCompactList}\item 
+ros\-::\-Node\-Handle \hyperlink{classexekutor_1_1ActionExekutor_a1f0541608c4f27f3c72ab22b1874c882}{nh\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-A \-Nodehandle. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classexekutor_1_1ActionExekutor_af165894bbbbabd62c17be857be095936}{robot\-\_\-name\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-This member stores the name of the robot. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classexekutor_1_1ActionExekutor_ad0ab1bb7a2575962ee5fc9e2150c5d50}{action\-\_\-name\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-This member stores the name of the action. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classexekutor_1_1ActionExekutor_a4407dd299ca8494945da306b6a367108}{tuple\-\_\-set\-\_\-} \mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em \-Convenience strings to store the \-Command, \-State and \-Parameters meta-\/keys. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Protected \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceexekutor_a58d8a9cd227883a8eacb6400c9f62acb}{\-String\-Vector} \hyperlink{classexekutor_1_1ActionExekutor_a0dc39a7a2a3a67d2bdd366f9e6e682a2}{action\-\_\-str\-\_\-list}
+\begin{DoxyCompactList}\small\item\em \-This static member has a list of action names of all created objects of supertype \hyperlink{classexekutor_1_1ActionExekutor}{\-Action\-Exekutor}. \end{DoxyCompactList}\item 
+static int \hyperlink{classexekutor_1_1ActionExekutor_a31644a88e4d0166c2d3a70bab9eb5b99}{my\-\_\-peis\-\_\-id}
+\begin{DoxyCompactList}\small\item\em \-Peis \-I\-D of the process running the exekutor. \end{DoxyCompactList}\item 
+static \hyperlink{namespaceexekutor_a141a8f9a739e67ffb2356da18a653162}{\-Action\-Exekutor\-Ptr\-Vector} \hyperlink{classexekutor_1_1ActionExekutor_a73c4f2607b0725f5b201cf501cb42578}{action\-\_\-ptr\-\_\-list}
+\begin{DoxyCompactList}\small\item\em \-This static member has a list of all the created objects of supertype \hyperlink{classexekutor_1_1ActionExekutor}{\-Action\-Exekutor}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-The \-Class that provides the exekutor interface for the \char`\"{}move it\char`\"{}/\char`\"{}manipulation\char`\"{} action. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classexekutor_1_1PickUpExekutor_a22954286bf604efb574d30ddb1f4cd7d}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!\-Pick\-Up\-Exekutor@{\-Pick\-Up\-Exekutor}}
+\index{\-Pick\-Up\-Exekutor@{\-Pick\-Up\-Exekutor}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{\-Pick\-Up\-Exekutor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf exekutor\-::\-Pick\-Up\-Exekutor\-::\-Pick\-Up\-Exekutor} (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{robot\-\_\-name, }
+\item[{std\-::string}]{a\-\_\-name}
+\end{DoxyParamCaption}
+)}}\label{classexekutor_1_1PickUpExekutor_a22954286bf604efb574d30ddb1f4cd7d}
+
+
+\-Constructor takes as arguments the robot's name and the function's name. 
+
+\hypertarget{classexekutor_1_1PickUpExekutor_a2b05bbfb6a08f3813a5e58dcdfb4a713}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!$\sim$\-Pick\-Up\-Exekutor@{$\sim$\-Pick\-Up\-Exekutor}}
+\index{$\sim$\-Pick\-Up\-Exekutor@{$\sim$\-Pick\-Up\-Exekutor}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{$\sim$\-Pick\-Up\-Exekutor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf exekutor\-::\-Pick\-Up\-Exekutor\-::$\sim$\-Pick\-Up\-Exekutor} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}\label{classexekutor_1_1PickUpExekutor_a2b05bbfb6a08f3813a5e58dcdfb4a713}
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classexekutor_1_1PickUpExekutor_a68fcf0ded6547a5b7711dcd5fbc75a21}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!action\-Thread@{action\-Thread}}
+\index{action\-Thread@{action\-Thread}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{action\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Pick\-Up\-Exekutor\-::action\-Thread} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}\label{classexekutor_1_1PickUpExekutor_a68fcf0ded6547a5b7711dcd5fbc75a21}
+
+
+\-Function is called after meta link is established. 
+
+\-This is the method that will be called once the \-Tuple link is found. 
+
+\-Implements \hyperlink{classexekutor_1_1ActionExekutor_ab80a1327f11113222157cfec0abd9e9b}{exekutor\-::\-Action\-Exekutor}.
+
+\hypertarget{classexekutor_1_1ActionExekutor_ad2beec0ac18fbdaccf66fea31dbc9f69}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!add\-Action@{add\-Action}}
+\index{add\-Action@{add\-Action}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{add\-Action}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf exekutor\-::\-Action\-Exekutor\-::add\-Action} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Action\-Exekutor} $\ast$}]{\-\_\-this}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_ad2beec0ac18fbdaccf66fea31dbc9f69}
+
+
+\-Add the action to the action\-\_\-ptr\-\_\-list. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_af8ca9f59f077baad45a8cba4ab774e82}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!extract\-Params@{extract\-Params}}
+\index{extract\-Params@{extract\-Params}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{extract\-Params}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ double $>$ {\bf exekutor\-::\-Action\-Exekutor\-::extract\-Params} (
+\begin{DoxyParamCaption}
+\item[{char}]{p\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_af8ca9f59f077baad45a8cba4ab774e82}
+
+
+\-Convert a string into a vector of doubles. 
+
+\-This function converts the c-\/string given as arguments into double values. \-The double values in the actual string should be separated by commas or spaces. \-Convenience method to extract the parameters from the appropriate tuple. \hypertarget{classexekutor_1_1ActionExekutor_a48d170d3931798f4019856fc0f070392}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!get\-Action\-Name@{get\-Action\-Name}}
+\index{get\-Action\-Name@{get\-Action\-Name}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{get\-Action\-Name}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf exekutor\-::\-Action\-Exekutor\-::get\-Action\-Name} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a48d170d3931798f4019856fc0f070392}
+
+
+\-We haven't found the use of this function till now! 
+
+\hypertarget{classexekutor_1_1ActionExekutor_ac1e62ad386692ab2cd7e8ae2173f1eb5}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!get\-Param\-Tuple@{get\-Param\-Tuple}}
+\index{get\-Param\-Tuple@{get\-Param\-Tuple}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{get\-Param\-Tuple}]{\setlength{\rightskip}{0pt plus 5cm}\-Peis\-Tuple {\bf exekutor\-::\-Action\-Exekutor\-::get\-Param\-Tuple} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_ac1e62ad386692ab2cd7e8ae2173f1eb5}
+
+
+\-Convenience function to extract the parameters. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_ae2f81a4994766a040bf6fa1cf36fbfb5}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!initiate\-Meta\-Tuples@{initiate\-Meta\-Tuples}}
+\index{initiate\-Meta\-Tuples@{initiate\-Meta\-Tuples}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{initiate\-Meta\-Tuples}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Action\-Exekutor\-::initiate\-Meta\-Tuples} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_ae2f81a4994766a040bf6fa1cf36fbfb5}
+
+
+\-This function initiates all the peis meta-\/tuples necessary to use the action. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a73b5509aeadf1d592b3b2b27bd9ce2ae}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!reset\-Meta\-Tuples@{reset\-Meta\-Tuples}}
+\index{reset\-Meta\-Tuples@{reset\-Meta\-Tuples}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{reset\-Meta\-Tuples}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Action\-Exekutor\-::reset\-Meta\-Tuples} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a73b5509aeadf1d592b3b2b27bd9ce2ae}
+
+
+\-Reset \-Meta-\/tuples that were linked previously. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a47056dd4cb829acdbfd6a43378d3f332}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!set\-State@{set\-State}}
+\index{set\-State@{set\-State}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{set\-State}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Action\-Exekutor\-::set\-State} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-State\-Value}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a47056dd4cb829acdbfd6a43378d3f332}
+
+
+\-Set the \-S\-T\-A\-T\-E tuples to the desired values. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a0637295658ad106f0ed3661be8f52c13}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!start\-Action\-Thread@{start\-Action\-Thread}}
+\index{start\-Action\-Thread@{start\-Action\-Thread}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{start\-Action\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ {\bf exekutor\-::\-Action\-Exekutor\-::start\-Action\-Thread} (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{\-A}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a0637295658ad106f0ed3661be8f52c13}
+
+
+\-The main thread function from where action\-Thread is going to be called. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a1aa23235e75f6c59983115b9e3c4dbfd}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!wait\-For\-Link@{wait\-For\-Link}}
+\index{wait\-For\-Link@{wait\-For\-Link}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{wait\-For\-Link}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf exekutor\-::\-Action\-Exekutor\-::wait\-For\-Link} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a1aa23235e75f6c59983115b9e3c4dbfd}
+
+
+\-When this function is called, the program starts waiting for links to become available so that it can execute actions. 
+
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classexekutor_1_1ActionExekutor_ad0ab1bb7a2575962ee5fc9e2150c5d50}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!action\-\_\-name\-\_\-@{action\-\_\-name\-\_\-}}
+\index{action\-\_\-name\-\_\-@{action\-\_\-name\-\_\-}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{action\-\_\-name\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf exekutor\-::\-Action\-Exekutor\-::action\-\_\-name\-\_\-}\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_ad0ab1bb7a2575962ee5fc9e2150c5d50}
+
+
+\-This member stores the name of the action. 
+
+\-Example\-: \-Move\-To, \-Find\-Blob or \-Find\-Human. \hypertarget{classexekutor_1_1ActionExekutor_a73c4f2607b0725f5b201cf501cb42578}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!action\-\_\-ptr\-\_\-list@{action\-\_\-ptr\-\_\-list}}
+\index{action\-\_\-ptr\-\_\-list@{action\-\_\-ptr\-\_\-list}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{action\-\_\-ptr\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Action\-Exekutor\-Ptr\-Vector} {\bf exekutor\-::\-Action\-Exekutor\-::action\-\_\-ptr\-\_\-list}\hspace{0.3cm}{\ttfamily  \mbox{[}static, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a73c4f2607b0725f5b201cf501cb42578}
+
+
+\-This static member has a list of all the created objects of supertype \hyperlink{classexekutor_1_1ActionExekutor}{\-Action\-Exekutor}. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a0dc39a7a2a3a67d2bdd366f9e6e682a2}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!action\-\_\-str\-\_\-list@{action\-\_\-str\-\_\-list}}
+\index{action\-\_\-str\-\_\-list@{action\-\_\-str\-\_\-list}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{action\-\_\-str\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-String\-Vector} {\bf exekutor\-::\-Action\-Exekutor\-::action\-\_\-str\-\_\-list}\hspace{0.3cm}{\ttfamily  \mbox{[}static, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a0dc39a7a2a3a67d2bdd366f9e6e682a2}
+
+
+\-This static member has a list of action names of all created objects of supertype \hyperlink{classexekutor_1_1ActionExekutor}{\-Action\-Exekutor}. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a31644a88e4d0166c2d3a70bab9eb5b99}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!my\-\_\-peis\-\_\-id@{my\-\_\-peis\-\_\-id}}
+\index{my\-\_\-peis\-\_\-id@{my\-\_\-peis\-\_\-id}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{my\-\_\-peis\-\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf exekutor\-::\-Action\-Exekutor\-::my\-\_\-peis\-\_\-id}\hspace{0.3cm}{\ttfamily  \mbox{[}static, protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a31644a88e4d0166c2d3a70bab9eb5b99}
+
+
+\-Peis \-I\-D of the process running the exekutor. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_a1f0541608c4f27f3c72ab22b1874c882}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!nh\-\_\-@{nh\-\_\-}}
+\index{nh\-\_\-@{nh\-\_\-}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{nh\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}ros\-::\-Node\-Handle {\bf exekutor\-::\-Action\-Exekutor\-::nh\-\_\-}\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a1f0541608c4f27f3c72ab22b1874c882}
+
+
+\-A \-Nodehandle. 
+
+\-This ensures that \-R\-O\-S stays alive. \hypertarget{classexekutor_1_1PickUpExekutor_a49a101b883854d2fd5200dae5277125b}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!pick\-\_\-up\-\_\-client\-\_\-@{pick\-\_\-up\-\_\-client\-\_\-}}
+\index{pick\-\_\-up\-\_\-client\-\_\-@{pick\-\_\-up\-\_\-client\-\_\-}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{pick\-\_\-up\-\_\-client\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}actionlib\-::\-Simple\-Action\-Client$<$pick\-\_\-up\-\_\-action\-::\-Pick\-Up\-Action$>$ {\bf exekutor\-::\-Pick\-Up\-Exekutor\-::pick\-\_\-up\-\_\-client\-\_\-}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}\label{classexekutor_1_1PickUpExekutor_a49a101b883854d2fd5200dae5277125b}
+
+
+\-Action client (simple) for the 'pick\-\_\-up' action. 
+
+\hypertarget{classexekutor_1_1ActionExekutor_af165894bbbbabd62c17be857be095936}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!robot\-\_\-name\-\_\-@{robot\-\_\-name\-\_\-}}
+\index{robot\-\_\-name\-\_\-@{robot\-\_\-name\-\_\-}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{robot\-\_\-name\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf exekutor\-::\-Action\-Exekutor\-::robot\-\_\-name\-\_\-}\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_af165894bbbbabd62c17be857be095936}
+
+
+\-This member stores the name of the robot. 
+
+\-Example\-: \-Doro1, \-Oro1, \-Coro1, \-Turtlebot342. \hypertarget{classexekutor_1_1ActionExekutor_a4407dd299ca8494945da306b6a367108}{\index{exekutor\-::\-Pick\-Up\-Exekutor@{exekutor\-::\-Pick\-Up\-Exekutor}!tuple\-\_\-set\-\_\-@{tuple\-\_\-set\-\_\-}}
+\index{tuple\-\_\-set\-\_\-@{tuple\-\_\-set\-\_\-}!exekutor::PickUpExekutor@{exekutor\-::\-Pick\-Up\-Exekutor}}
+\subsubsection[{tuple\-\_\-set\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf exekutor\-::\-Action\-Exekutor\-::tuple\-\_\-set\-\_\-}\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}protected, inherited\mbox{]}}}}\label{classexekutor_1_1ActionExekutor_a4407dd299ca8494945da306b6a367108}
+
+
+\-Convenience strings to store the \-Command, \-State and \-Parameters meta-\/keys. 
+
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/ace/chittaranjan\-\_\-ros/catkin\-\_\-ws/src/exekutor/include/exekutor/\hyperlink{pick__up__exekutor_8h}{pick\-\_\-up\-\_\-exekutor.\-h}\item 
+/home/ace/chittaranjan\-\_\-ros/catkin\-\_\-ws/src/exekutor/src/\hyperlink{pick__up__exekutor_8cpp}{pick\-\_\-up\-\_\-exekutor.\-cpp}\end{DoxyCompactItemize}
