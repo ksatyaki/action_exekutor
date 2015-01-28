@@ -9,7 +9,7 @@ boost::shared_ptr <tf::TransformListener> ActionExekutor::tf_listener_base_;
 
 int ActionExekutor::my_peis_id;
 
-ActionExekutor::ActionExekutor(std::string robot_name, std::string a_name)
+ActionExekutor::ActionExekutor(std::string robot_name, std::string a_name, bool listen_on_tf)
 {
 	if(peiskmt_isRunning() && ros::isInitialized())
 	{
@@ -39,14 +39,17 @@ ActionExekutor::ActionExekutor(std::string robot_name, std::string a_name)
 	setState(IDLE);
 	setResult("NOTHING");
 
-	if(!ActionExekutor::tf_listener_base_)
+	if(!ActionExekutor::tf_listener_base_ && listen_on_tf)
 	{
 		ROS_INFO("*****************************************************");
 		ROS_INFO("Hip hip hurray! Let\'s hear it for the smart ass day!");
 		ROS_INFO("*****************************************************");
+
+		tf_listener_base_ = boost::shared_ptr <tf::TransformListener> (new tf::TransformListener(ros::Duration(10)));
 	}
 
-	tf_listener_ = boost::shared_ptr <tf::TransformListener> (tf_listener_base_);
+	if(listen_on_tf)
+		tf_listener_ = boost::shared_ptr <tf::TransformListener> (tf_listener_base_);
 }
 
 ActionExekutor::~ActionExekutor()

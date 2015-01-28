@@ -194,7 +194,7 @@ class ActionExekutor /* ABSTRACT CLASS */
 	/**
 	 * Simple constructor that uses the string to initiate all meta tuples related to the action.
 	 */
-	ActionExekutor(std::string robot_name, std::string a_name);
+	ActionExekutor(std::string robot_name, std::string a_name, bool listen_on_tf = true);
 
 	/**
 	 * Destructor.
