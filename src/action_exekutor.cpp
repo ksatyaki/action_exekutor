@@ -202,7 +202,7 @@ void ActionExekutor::startAction(int i)
 
 			if(strcmp("OFF",recdTuple.data)==0)
 			{
-				printf("\nCommand is OFF.\n");
+				//printf("\nCommand is OFF.\n");
 				sleep(1);
 				continue;
 			}
@@ -236,7 +236,7 @@ void ActionExekutor::resetMetaTuples()
 PeisTuple ActionExekutor::getParamTuple()
 {
 	PeisTuple* paramTuple = peiskmt_getTupleIndirectly(my_peis_id, tuple_set_[PARAMS].c_str(), PEISK_KEEP_OLD);
-	ROS_INFO("Fetching parameters for action...");
+	//ROS_INFO("Fetching parameters for action...");
 	while(!paramTuple)
 	{
 		paramTuple = peiskmt_getTupleIndirectly(my_peis_id, tuple_set_[PARAMS].c_str(), PEISK_KEEP_OLD);
@@ -248,7 +248,7 @@ PeisTuple ActionExekutor::getParamTuple()
 PeisTuple ActionExekutor::getCommandTuple()
 {
 	PeisTuple* commandTuple = peiskmt_getTupleIndirectly(my_peis_id, tuple_set_[COMMAND].c_str(), PEISK_KEEP_OLD);
-	ROS_INFO("Fetching Command for action...");
+	//ROS_INFO("Fetching Command for action...");
 	while(!commandTuple)
 	{
 		commandTuple = peiskmt_getTupleIndirectly(my_peis_id, tuple_set_[COMMAND].c_str(), PEISK_KEEP_OLD);
