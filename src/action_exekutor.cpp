@@ -31,6 +31,9 @@ ActionExekutorPtrVector ActionExekutor::action_ptr_list;
 boost::shared_ptr <tf::TransformListener> ActionExekutor::tf_listener_base_;
 
 int ActionExekutor::my_peis_id;
+std::map <std::string, pthread_t> ActionExekutor::action_name_to_thread_id_;
+std::map <std::string, bool> ActionExekutor::action_name_to_is_running_;
+int ActionExekutor::action_timeout_ = 120;
 
 ActionExekutor::ActionExekutor(std::string robot_name, std::string a_name, bool listen_on_tf)
 {
@@ -41,7 +44,7 @@ ActionExekutor::ActionExekutor(std::string robot_name, std::string a_name, bool 
 
 	else
 	{
-		if(!peiskmt_isRunning)
+		if(!peiskmt_isRunning())
 			printf("ERROR: PeisKernel is not running! Aborted.\n");
 		else
 			printf("ERROR: ROS is not running! Aborted.\n");
@@ -90,7 +93,7 @@ void ActionExekutor::printAll()
 	
 	ROS_INFO("ActionExekutorPtr has these: ");
 	
-	for(std::vector <ActionExekutor*>::iterator iter_actptr = action_ptr_list.begin(); iter_actptr != action_ptr_list.end(); iter_actptr)
+	for(std::vector <ActionExekutor*>::iterator iter_actptr = action_ptr_list.begin(); iter_actptr != action_ptr_list.end(); iter_actptr++)
 	{
 		ROS_INFO("\n%s", (*iter_actptr)->action_name_.c_str());
 	}
@@ -159,8 +162,8 @@ void ActionExekutor::initiateMetaTuples()
 	// Result is no longer a meta-tuple in exekutor.
 	//peiskmt_declareMetaTuple(my_peis_id, tuple_set_[RESULT].c_str());
 
-	peiskmt_subscribeIndirectly(my_peis_id, tuple_set_[COMMAND].c_str());
-	peiskmt_subscribeIndirectly(my_peis_id, tuple_set_[PARAMS].c_str());
+	//peiskmt_subscribeIndirectly(my_peis_id, tuple_set_[COMMAND].c_str());
+	//peiskmt_subscribeIndirectly(my_peis_id, tuple_set_[PARAMS].c_str());
 
 }
 
@@ -168,84 +171,59 @@ void ActionExekutor::waitForLink()
 {
 	for(std::vector<ActionExekutor*>::iterator it = action_ptr_list.begin(); it!= action_ptr_list.end(); it++)
 	{
-		(*it)->waitForMyLink();
+		peiskmt_registerMetaTupleCallback(peisk_peisid(), (*it)->tuple_set_[COMMAND].c_str(), *it, &ActionExekutor::commandCallback);
+		peiskmt_registerMetaTupleCallback(peisk_peisid(), (*it)->tuple_set_[PARAMS].c_str(), *it, &ActionExekutor::paramsCallback);
+		peiskmt_registerTupleCallback(peisk_peisid(), (*it)->tuple_set_[STATE].c_str(), *it, &ActionExekutor::stateCallback);
 	}
 
-	for(std::vector<ActionExekutor*>::iterator it = action_ptr_list.begin(); it!= action_ptr_list.end(); it++)
-	{
-		pthread_join((*it)->thread_id_, NULL);
+	ROS_INFO("Callbacks have been registered! Waiting for commands... ");
+	while(ros::ok() && peiskmt_isRunning()) {
+		sleep(1);
 	}
 }
 
-void ActionExekutor::waitForMyLink()
-{
-	pthread_create(&thread_id_, NULL, ActionExekutor::waitThread, (void *) this);
-}
-
-void ActionExekutor::cancelWaiting()
-{
-	pthread_cancel(thread_id_);
-}
-
-void* ActionExekutor::waitThread(void *_this_)
-{
-	while(ros::ok() && peiskmt_isRunning())
-	{
-		if(peiskmt_isMetaTuple( ((ActionExekutor*) _this_)->my_peis_id, ((ActionExekutor*) _this_)->tuple_set_[COMMAND].c_str()))
-		{
-			//ROS_INFO("%s Link Status: CONNECTED\n", ((ActionExekutor*) _this_)->action_name_.c_str());
-			if(!peiskmt_isMetaTuple(((ActionExekutor*) _this_)->my_peis_id, ((ActionExekutor*) _this_)->tuple_set_[PARAMS].c_str()))
-			{
-				printf("\nParameter tuple was not linked. Something is not right. All tuples should be linked.\n");
- 				sleep(1);
-				continue;
+void ActionExekutor::commandCallback(PeisTuple* tuple, void* _this_) {
+	//ROS_INFO("CALLED BACK");
+	ActionExekutor* _this_ptr_ = static_cast<ActionExekutor*>(_this_);
+	if(std::string("ON").compare(tuple->data) == 0) {
+		if(std::string("COMPLETED").compare(_this_ptr_->getStateTuple_st().data) != 0 && std::string("FAILED").compare(_this_ptr_->getStateTuple_st().data) != 0) {
+			if(action_name_to_is_running_[_this_ptr_->action_name_]) {
+				// cancel thread and run again.
+				pthread_cancel(action_name_to_thread_id_[_this_ptr_->action_name_]);
+				ROS_INFO("Cancelled already running exekutor thread. Spawning new one.");
 			}
-
-			// Typical function call.
-			PeisTuple stateTup = ((ActionExekutor*) _this_)->getStateTuple();
-			if(strcmp(stateTup.data, "COMPLETED") != 0 && strcmp(stateTup.data, "FAILED") != 0)
-				((ActionExekutor*) _this_)->startAction();
-		}
-
-		//else
-			//ROS_INFO("%s Link Status: Disconnected\n", ((ActionExekutor*) _this_)->action_name_.c_str());
 			
-		usleep(500000);
+			pthread_create(&action_name_to_thread_id_[_this_ptr_->action_name_], NULL, &ActionExekutor::startAction, _this_);
+		}
+			
 	}
-	
-	return NULL;
 }
 
-void ActionExekutor::startAction(int i)
+void ActionExekutor::paramsCallback(PeisTuple* tuple, void* _this_) {
+	ROS_INFO("Received new parameters: %s", tuple->data);
+}
+
+void ActionExekutor::stateCallback(PeisTuple* tuple, void* _this_) {
+	//ROS_INFO("CALLED BACK");
+	ActionExekutor* _this_ptr_ = static_cast<ActionExekutor*>(_this_);
+	if(std::string("ON").compare(_this_ptr_->getCommandTuple_st().data) == 0 && std::string("IDLE").compare(tuple->data) == 0) {
+		if(action_name_to_is_running_[_this_ptr_->action_name_]) {
+			// cancel thread and run again.
+			pthread_cancel(action_name_to_thread_id_[_this_ptr_->action_name_]);
+			ROS_INFO("Cancelled already running exekutor thread. Spawning new one.");
+		}
+			
+		pthread_create(&action_name_to_thread_id_[_this_ptr_->action_name_], NULL, &ActionExekutor::startAction, _this_);
+		action_name_to_is_running_[_this_ptr_->action_name_] = true;
+	}
+}
+
+void* ActionExekutor::startAction(void* this_)
 {
-
-		while(ros::ok() && i--)
-		{
-			PeisTuple recdTuple = getCommandTuple();
-
-			if(strcmp("OFF",recdTuple.data)==0)
-			{
-				//printf("\nCommand is OFF.\n");
-				sleep(1);
-				continue;
-			}
-
-			if(strcmp("ON",recdTuple.data)==0)
-			{
-				setState(RUNNING);
-				actionThread();
-				break;
-			}
-
-		}
-		/*
-		if(timeout_flag == true)
-		{
-			printf("Action timed out!\n");
-			setState(FAILED);
-		}
-		*/
-		//resetMetaTuples();
+	ActionExekutor* _this_ = static_cast <ActionExekutor*> (this_);
+	_this_->actionThread();
+	action_name_to_is_running_[_this_->action_name_] = false;
+	return NULL;
 }
 
 void ActionExekutor::resetMetaTuples()
@@ -280,6 +258,18 @@ PeisTuple ActionExekutor::getCommandTuple()
 	return *commandTuple;
 }
 
+PeisTuple ActionExekutor::getCommandTuple_st()
+{
+	PeisTuple* commandTuple = peisk_getTupleIndirectly(my_peis_id, tuple_set_[COMMAND].c_str(), PEISK_KEEP_OLD);
+	//ROS_INFO("Fetching Command for action...");
+	while(!commandTuple)
+	{
+		commandTuple = peisk_getTupleIndirectly(my_peis_id, tuple_set_[COMMAND].c_str(), PEISK_KEEP_OLD);
+		usleep(500000);
+	}
+	return *commandTuple;
+}
+
 PeisTuple ActionExekutor::getStateTuple()
 {
 	PeisTuple* stateTuple = peiskmt_getTuple(my_peis_id, tuple_set_[STATE].c_str(), PEISK_KEEP_OLD);
@@ -291,4 +281,17 @@ PeisTuple ActionExekutor::getStateTuple()
 	}
 	return *stateTuple;
 }
+
+PeisTuple ActionExekutor::getStateTuple_st()
+{
+	PeisTuple* stateTuple = peisk_getTuple(my_peis_id, tuple_set_[STATE].c_str(), PEISK_KEEP_OLD);
+	//ROS_INFO("Fetching state.");
+	while(!stateTuple)
+	{
+		stateTuple = peisk_getTuple(my_peis_id, tuple_set_[STATE].c_str(), PEISK_KEEP_OLD);
+		sleep(500000);
+	}
+	return *stateTuple;
+}
+	
 }

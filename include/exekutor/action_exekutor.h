@@ -35,6 +35,7 @@
 #include <ros/ros.h>
 #include <tf/tf.h>
 #include <tf/transform_listener.h>
+#include <peiskernel/meta_tuple_callback.hpp>
 
 extern "C" {
 #include <peiskernel/peiskernel.h>
@@ -61,11 +62,6 @@ typedef std::vector<std::string> StringVector;
 enum TupleType{COMMAND = 0, STATE, PARAMS, RESULT, PROGRESS};
 
 enum StateValue{COMPLETED = 0, RUNNING, FAILED, IDLE};
-
-/**
- * The macro that defines when an action should time-out.
- */
-#define ACTION_TIMEOUT 10
 
 /** A Base class to keep track of all the declared actions and
  * to run a Listener that continuously listens on tuples and
@@ -114,6 +110,9 @@ class ActionExekutor /* ABSTRACT CLASS */
 	 */
 	static StringVector action_str_list;
 
+	static std::map <std::string, pthread_t> action_name_to_thread_id_;
+	static std::map <std::string, bool> action_name_to_is_running_;
+
 	/**
 	 * Peis ID of the process running the exekutor.
 	 */
@@ -127,14 +126,22 @@ class ActionExekutor /* ABSTRACT CLASS */
 	/**
 	 * Add the action to the action_ptr_list.
 	 */
-	static inline void addAction(ActionExekutor* _this) { action_ptr_list.push_back(_this); 	action_str_list.push_back(_this->action_name_); }
+	static inline void addAction(ActionExekutor* _this) { action_ptr_list.push_back(_this); 	action_str_list.push_back(_this->action_name_); action_name_to_thread_id_[_this->action_name_] = -1; action_name_to_is_running_[_this->action_name_] = false;}
 	    																		/* TODO Do this step if the action is not already on the list */
+
+	static int action_timeout_;
 	/**
 	 * The function that makes a call to the actionThread() after doing common tasks.
 	 * This takes care of setting the state to RUNNING.
 	 */
-	void startAction(int i = ACTION_TIMEOUT);
+	static void* startAction(void* timeout = &action_timeout_);
 
+	static void stateCallback(PeisTuple* tuple, void* _this_);
+
+	static void paramsCallback(PeisTuple* tuple, void* _this_);
+
+	static void commandCallback(PeisTuple* tuple, void* _this_);
+ 
 	/**
 	 * This function initiates all the peis meta-tuples necessary to use the action.
 	 */
@@ -163,10 +170,14 @@ class ActionExekutor /* ABSTRACT CLASS */
 	 */
 	PeisTuple getStateTuple();
 
+	PeisTuple getStateTuple_st();
+
 	/**
 	 * Convenience function to get the command tuple.
 	 */
 	PeisTuple getCommandTuple();
+
+	PeisTuple getCommandTuple_st();
 
 	/**
 	 * Set the STATE tuples to the desired values.

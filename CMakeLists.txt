@@ -51,6 +51,7 @@ target_link_libraries(action_exekutor
   peiskernel_mt
   peiskernel
   pthread
+  meta_tuple_callback
 )
 
 ######################################
