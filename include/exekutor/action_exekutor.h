@@ -109,6 +109,16 @@ class ActionExekutor /* ABSTRACT CLASS */
 	 */
 	std::string tuple_set_[5];
 
+	static bool abortRequested;
+
+	/** 
+	 * Callback for abort.
+	 * 
+	 * @param p The tuple's pointer.
+	 * @param data Data passed to the function.
+	 */
+	static void abortCallback(PeisTuple* p, void* data);
+
 	/**
 	 * This static member has a list of action names of all created objects of supertype ActionExekutor.
 	 */

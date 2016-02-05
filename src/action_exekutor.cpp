@@ -29,6 +29,7 @@ namespace exekutor
 StringVector ActionExekutor::action_str_list;
 ActionExekutorPtrVector ActionExekutor::action_ptr_list;
 boost::shared_ptr <tf::TransformListener> ActionExekutor::tf_listener_base_;
+bool ActionExekutor::abortRequested = false;
 
 int ActionExekutor::my_peis_id;
 
@@ -73,6 +74,9 @@ ActionExekutor::ActionExekutor(std::string robot_name, std::string a_name, bool 
 
 	if(listen_on_tf)
 		tf_listener_ = boost::shared_ptr <tf::TransformListener> (tf_listener_base_);
+
+	peiskmt_subscribe(6023, "abort");
+	peiskmt_registerTupleCallback(6023, "abort", NULL, ActionExekutor::abortCallback);
 }
 
 ActionExekutor::~ActionExekutor()
@@ -164,16 +168,31 @@ void ActionExekutor::initiateMetaTuples()
 
 }
 
+void ActionExekutor::abortCallback(PeisTuple* p, void* data) {
+		ActionExekutor::abortRequested = true;
+}
+
 void ActionExekutor::waitForLink()
 {
-	for(std::vector<ActionExekutor*>::iterator it = action_ptr_list.begin(); it!= action_ptr_list.end(); it++)
-	{
-		(*it)->waitForMyLink();
-	}
+	while(1 && ros::ok() && peisk_isRunning()) {
 
-	for(std::vector<ActionExekutor*>::iterator it = action_ptr_list.begin(); it!= action_ptr_list.end(); it++)
-	{
-		pthread_join((*it)->thread_id_, NULL);
+		abortRequested = false;
+		ROS_INFO("Starting new threads for waiting.");
+		for(std::vector<ActionExekutor*>::iterator it = action_ptr_list.begin(); it!= action_ptr_list.end(); it++)
+		{
+				(*it)->waitForMyLink();
+		}
+		while(ros::ok() && peiskmt_isRunning()) {
+				if(abortRequested) {
+						for(std::vector<ActionExekutor*>::iterator it = action_ptr_list.begin(); it!= action_ptr_list.end(); it++)
+						{
+								(*it)->cancelWaiting();
+								(*it)->resetMetaTuples();
+						}
+						break;
+				}
+		}
+		ROS_INFO("All threads have joined. Abort was requested.");
 	}
 }
 
@@ -206,9 +225,6 @@ void* ActionExekutor::waitThread(void *_this_)
 			if(strcmp(stateTup.data, "COMPLETED") != 0 && strcmp(stateTup.data, "FAILED") != 0)
 				((ActionExekutor*) _this_)->startAction();
 		}
-
-		//else
-			//ROS_INFO("%s Link Status: Disconnected\n", ((ActionExekutor*) _this_)->action_name_.c_str());
 			
 		usleep(500000);
 	}
@@ -238,14 +254,6 @@ void ActionExekutor::startAction(int i)
 			}
 
 		}
-		/*
-		if(timeout_flag == true)
-		{
-			printf("Action timed out!\n");
-			setState(FAILED);
-		}
-		*/
-		//resetMetaTuples();
 }
 
 void ActionExekutor::resetMetaTuples()
